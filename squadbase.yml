@@ -1,0 +1,29 @@
+version: '1'
+ 
+# Build Settings
+build:
+  framework: streamlit        # streamlit | nextjs | morph
+  runtime: python3.9          # python3.9, python3.10, python3.11, python3.12, python3.13, node18, node20, node22
+  package_manager: pip        # pip, poetry, uv, npm, yarn, pnpm
+  entrypoint: src/app.py      # src/app.py
+  # Custom Dockerfile settings
+  context: .
+  build_args:
+    ARG1: value1
+    ARG2: value2
+ 
+# Deployment Settings
+deployment:
+  provider: gcp
+  aws:
+    memory: 512
+    timeout: 30
+    provisioned_concurrency: 0
+    ephemeral_storage: 512
+  gcp:
+    memory: 1Gi
+    cpu: 1
+    timeout: 300
+    concurrency: 80
+    min_instances: 0
+    ephemeral_storage: 10Gi
