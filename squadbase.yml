@@ -5,7 +5,7 @@ build:
   framework: streamlit        # streamlit | nextjs | morph
   runtime: python3.9          # python3.9, python3.10, python3.11, python3.12, python3.13, node18, node20, node22
   package_manager: pip        # pip, poetry, uv, npm, yarn, pnpm
-  entrypoint: src/app.py      # src/app.py
+  entrypoint: src/app.py      # app.py
   # Custom Dockerfile settings
   context: .
   build_args:
