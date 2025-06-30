@@ -6,6 +6,7 @@ from sqlalchemy import create_engine, text, URL
 import folium
 from folium.plugins import MarkerCluster
 from streamlit_folium import folium_static
+import requests
 
 # SET PARAMETERS
 server = os.environ.get("SQL_SERVER")
@@ -14,6 +15,21 @@ username = os.environ.get("SQL_USERNAME")
 password = os.environ.get("SQL_PASSWORD")
 
 st.set_page_config(page_title="IVMS Events Map", layout="wide")
+
+### START IP ADDRESS TEST ###
+
+st.title("Outbound IP Address Checker")
+
+try:
+    response = requests.get("https://ifconfig.me", timeout=5)
+    response.raise_for_status()
+    ip_address = response.text.strip()
+    st.success(f"Outbound Public IP: {ip_address}")
+    st.info("Compare this IP to your Azure SQL whitelist.")
+except requests.RequestException as e:
+    st.error(f"Failed to fetch IP address: {e}")
+
+## END IP ADDRESS TEST ##
 
 st.title("IVMS Events Map")
 
