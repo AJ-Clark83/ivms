@@ -7,6 +7,14 @@ import folium
 from folium.plugins import MarkerCluster
 from streamlit_folium import folium_static
 import requests
+from dotenv import load_dotenv
+
+# Load ENV File
+load_dotenv()
+
+# SET API KEY For Squadbase
+key = os.environ.get("API")
+api_key = os.getenv(key)
 
 # SET PARAMETERS
 server = os.environ.get("SQL_SERVER")
@@ -18,16 +26,16 @@ st.set_page_config(page_title="IVMS Events Map", layout="wide")
 
 ### START IP ADDRESS TEST ###
 
-st.title("Outbound IP Address Checker")
+#st.title("Outbound IP Address Checker")
 
-try:
-    response = requests.get("https://ifconfig.me", timeout=5)
-    response.raise_for_status()
-    ip_address = response.text.strip()
-    st.success(f"Outbound Public IP: {ip_address}")
-    st.info("Compare this IP to your Azure SQL whitelist.")
-except requests.RequestException as e:
-    st.error(f"Failed to fetch IP address: {e}")
+#try:
+#    response = requests.get("https://ifconfig.me", timeout=5)
+#    response.raise_for_status()
+#    ip_address = response.text.strip()
+#    st.success(f"Outbound Public IP: {ip_address}")
+#    st.info("Compare this IP to your Azure SQL whitelist.")
+#except requests.RequestException as e:
+#    st.error(f"Failed to fetch IP address: {e}")
 
 ## END IP ADDRESS TEST ##
 
@@ -47,7 +55,6 @@ connection_string = (
     "TrustServerCertificate=no;"
     "Connection Timeout=30;"
 )
-
 connection_url = URL.create("mssql+pyodbc", query={"odbc_connect": connection_string})
 engine = create_engine(connection_url)
 
