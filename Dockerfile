@@ -30,4 +30,4 @@ COPY . .
 ENV STREAMLIT_SERVER_PORT=8080
 
 # Command to run the Streamlit app
-CMD ["streamlit", "run", "your_app.py", "--server.port=8080", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8080", "--server.address=0.0.0.0"]
