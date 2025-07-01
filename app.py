@@ -255,7 +255,7 @@ if "df" in st.session_state:
             icon=folium.Icon(color='red', icon='info-sign')
         ).add_to(marker_cluster)
 
-    folium_static(m, width=1800, height=1100)
+    folium_static(m, width="100%", height=1100)
     st.success(f"Total events shown: {len(filtered_df):,}")
 
 else:
