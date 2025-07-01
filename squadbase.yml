@@ -17,7 +17,7 @@ deployment:
   provider: gcp
   aws:
     memory: 512
-    timeout: 30
+    timeout: 300
     provisioned_concurrency: 0
     ephemeral_storage: 512
   gcp:
